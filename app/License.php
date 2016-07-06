@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class License extends Model
 {
     protected $table = 'license';
-    protected $fillable = array('gallery_item_id', 'license_code', 'domain','verify_code','expire_date');
+    protected $fillable = [
+        'gallery_item_id',
+        'license_code',
+        'domain',
+        'verify_code',
+        'expire_date'
+    ];
 
     public function galleryItem()
     {
