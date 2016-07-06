@@ -10,7 +10,8 @@
         "predis/predis": "^1.1",
         "jenssegers/agent": "^2.3",
         "laravelcollective/html": "^5.2",
-        "gulch/gminify": "dev-master"
+        "gulch/gminify": "dev-master",
+        "roumen/sitemap": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -23,3 +23,5 @@ Route::post('message/subscribe', 'Frontend\MessageController@subscribe');
 Route::post('message/contact', 'Frontend\MessageController@contact');
 Route::post('message/start', 'Frontend\MessageController@start');
 Route::post('message/requestcode', 'Frontend\MessageController@requestcode');
+
+Route::get('create/sitemap', 'SitemapController@generateSitemap');
