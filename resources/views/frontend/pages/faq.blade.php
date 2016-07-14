@@ -1,4 +1,8 @@
-@extends('frontend.template')
+@extends('frontend.template', [
+    'seoTitle' => 'FAQ. Вопросы и ответы. Sphered - 3D панорамы, виртуальные туры в 4K, FullHD',
+    'seoDescription' => 'FAQ. Вопросы и ответы. о 3Д панорамах, виртуальных 3D турах. Sphered [сферед] - проект популяризации VR решений.',
+    'seoKeywords' => 'FAQ, вопросы и ответы, о 3Д панорамах, о виртуальных 3D турах, виртуальные 3D туры, 3D панорамы, индивидуальные решения, HD качество, 4K качество'
+])
 
 @section('content')
 <div class="skills">

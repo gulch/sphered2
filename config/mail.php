@@ -55,7 +55,10 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => [
+        'address' => 'hello@sphered.com.ua',
+        'name' => 'Sphered Team'
+    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -1,4 +1,18 @@
-@extends('frontend.template')
+<?php
+
+$seoTitle = '';
+
+$seoTitle .= 'Портфолио проекта Sphered. 3D панорамы, виртуальные 3D туры в HD и 4K качестве';
+$seoDescription = 'Портфолио проекта инноваций 3D решений Sphered (сферед). Виртуальные 3д туры, сферические панорамы, трехмерные визуализации объектов.';
+$seoKeywords = 'портфолио, 3D тур, виртуальный тур, галерея панорам, 3d экскурсия 3D презентация, 3д виртуальный тур, панорамы 360, 3d панорама, 3d панорама html5';
+
+?>
+
+@extends('frontend.template', [
+    'seoTitle' => $seoTitle,
+    'seoDescription' => $seoDescription,
+    'seoKeywords' => $seoDescription
+])
 
 @section('content')
 <h1 class="tc7 font32 portfolio_title center">Портфолио</h1>
@@ -15,7 +29,7 @@
                             <li class="item dib">
                                 <a class="button {{Request::segment(2)==$type->itemType->url_segment?'active':''}}"
                                    href="{{URL::to('portfolio/'.$type->itemType->url_segment)}}">
-                                    {{$type->itemTypeRUS->title}}
+                                    {{ $type->itemType->title }}
                                 </a>
                             </li>
                         @endforeach

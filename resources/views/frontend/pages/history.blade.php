@@ -1,4 +1,8 @@
-@extends('frontend.template')
+@extends('frontend.template', [
+    'seoTitle' => 'История проекта Sphered. Cферед - проект популяризации VR решений.',
+    'seoDescription' => 'История проекта Sphered. О 3Д панорамах, виртуальных 3D турах. Sphered [сферед] - проект популяризации VR решений.',
+    'seoKeywords' => 'история, сферед, sphered, о 3Д панорамах, о виртуальных 3D турах, виртуальные 3D туры, 3D панорамы, индивидуальные решения, HD качество, 4K качество'
+])
 
 @section('content')
 <div class="main_box services_box">

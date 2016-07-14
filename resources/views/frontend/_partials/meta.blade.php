@@ -5,7 +5,7 @@
     if(!isset($seoTitle)) $seoTitle = 'Sphered';
     if(!isset($seoDescription)) $seoDescription = '';
     if(!isset($seoKeywords)) $seoKeywords = '';
-    if(!isset($seoImage)) $seoImage = url('/assets/img/' . 'logo.png');
+    if(!isset($seoImage)) $seoImage = '/assets/img/favicon/mstile-150x150.png';
 ?>
 
 <title>{{ $seoTitle }}</title>

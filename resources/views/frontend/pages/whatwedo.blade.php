@@ -1,4 +1,8 @@
-@extends('frontend.template')
+@extends('frontend.template', [
+    'seoTitle' => 'Sphered. Чем мы занимаемся. Cферед - проект популяризации VR решений.',
+    'seoDescription' => 'Чем мы занимаемся в Sphered. 3D панорамы, виртуальные туры, 3D объекты. Трехмерная фотография объектов. Обзор 360° на 360° в HD и 4K качестве.',
+    'seoKeywords' => 'панорамы, трехмерная фотография, сферед, sphered, о 3Д панорамах, о виртуальных 3D турах, виртуальные 3D туры, 3D панорамы, индивидуальные решения, HD качество, 4K качество'
+])
 
 @section('content')
 <div class="main_box services_box what-we-do_bg">

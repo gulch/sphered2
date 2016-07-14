@@ -8,8 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Page;
 use App\Gallery;
-use App\GalleryType;
-use App\GalleryCategory;
+use App\Type;
+use App\Category;
 use DB;
 
 class PortfolioController extends Controller
@@ -39,14 +39,14 @@ class PortfolioController extends Controller
     ) {
         $where_raw = ' is_commercial = ' . $is_commercial . ' AND show_in_gallery = 1 ';
         if ($type) {
-            $type_id = GalleryType::where('url_segment', $type)->firstOrFail()->id;
-            $where_raw .= ' AND type_id = ' . $type_id;
+            $type_id = Type::where('url_segment', $type)->firstOrFail()->id;
+            $where_raw .= ' AND id__Type = ' . $type_id;
         } else {
             $type = '';
         }
 
         if ($category) {
-            $where_raw .= ' AND category_id = ' . GalleryCategory::where('url_segment', $category)->firstOrFail()->id;
+            $where_raw .= ' AND id__Category = ' . Category::where('url_segment', $category)->firstOrFail()->id;
         } else {
             $category = '';
         }
@@ -62,14 +62,15 @@ class PortfolioController extends Controller
         $data['selected_type'] = $type;
 
         $data['gallery_items'] = $this->getGalleryItems($lang, $where_raw, $limit_skip, $limit_count);
-        $data['pageMetadata'] = $this->getPageMetaData();
+
+        /*$data['pageMetadata'] = $this->getPageMetaData();*/
 
         return $data;
     }
 
     public function getGalleryItems($lang, $where_raw, $limit_skip = 0, $limit_count = 25)
     {
-        return Gallery::with('item' . $lang, 'itemType', 'itemType' . $lang, 'itemCategory', 'itemCategory' . $lang)
+        return Gallery::with('item' . $lang, 'itemType', 'itemCategory')
             ->whereRaw($where_raw)
             ->take($limit_count)
             ->skip($limit_skip)
@@ -80,14 +81,14 @@ class PortfolioController extends Controller
     public function getAllIssetGalleryItemCategories($type_id = null, $is_commercial = 0)
     {
         if ($type_id) {
-            return Gallery::with('itemCategory', 'itemCategoryRUS')
-                ->whereRaw(' type_id =  ? AND is_commercial = ? ', array($type_id, $is_commercial))
-                ->groupBy('category_id')
+            return Gallery::with('itemCategory')
+                ->whereRaw(' id__Type =  ? AND is_commercial = ? ', array($type_id, $is_commercial))
+                ->groupBy('id__Category')
                 ->get();
 
-            $items = Gallery::whereRaw(' type_id =  ? AND is_commercial = ? ', array($type_id, $is_commercial))
-                ->select('category_id')
-                ->groupBy('category_id')
+            $items = Gallery::whereRaw(' id__Type =  ? AND is_commercial = ? ', array($type_id, $is_commercial))
+                ->select('id__Category')
+                ->groupBy('id__Category')
                 ->get();
 
             if (sizeof($items)) {
@@ -95,29 +96,30 @@ class PortfolioController extends Controller
                 foreach ($items as $item) {
                     $g[] = $item->category_id;
                 }
-                return GalleryCategory::with('itemCategoryRUS')
+                return GalleryCategory::with('itemCategory')
                     ->whereRaw(' id IN ( ' . implode(' , ', $g) . ' ) ')
                     ->get();
             }
 
         }
-        return Gallery::with('itemCategory', 'itemCategoryRUS')
-            ->groupBy('category_id')
+        return Gallery::with('itemCategory')
+            ->groupBy('id__Category')
             ->get();
     }
 
     public function getAllIssetGalleryItemTypes($is_commercial = 0)
     {
-        return Gallery::with('itemType', 'itemTypeRUS')
-            ->where('is_commercial', '=', $is_commercial)
-            ->groupBy('type_id')
+        return Gallery::with('itemType')
+            ->where('is_commercial', $is_commercial)
+            ->groupBy('id__Type')
             ->get();
     }
 
     private function getCategoryTitleBySlug($slug)
     {
-        return GalleryCategory::with('GalleryCategoryRUS')->where('url_segment', '=',
-            $slug)->first();
+        return GalleryCategory::with('GalleryCategoryRUS')
+            ->where('url_segment', $slug)
+            ->first();
     }
 
     private function getWorkData($type, $category, $slug, $lang = 'RUS')
@@ -132,11 +134,11 @@ class PortfolioController extends Controller
             $where_raw = ' show_in_gallery = 1 AND url_segment <> "' . $slug . '"';
             if ($type) {
                 $type_id = GalleryType::where('url_segment', $type)->firstOrFail()->id;
-                $where_raw .= ' AND type_id = ' . $type_id;
+                $where_raw .= ' AND id__Type = ' . $type_id;
             } else {
                 $type = '';
             }
-            $data['similar_items'] = Gallery::with('item' . $lang, 'itemType', 'itemType' . $lang, 'itemCategory', 'itemCategory' . $lang)
+            $data['similar_items'] = Gallery::with('item' . $lang, 'itemType', 'itemCategory')
                 ->whereRaw($where_raw)
                 ->take(3)
                 ->skip(0)

@@ -65,4 +65,5 @@
         </div>
     </div>
     <a class="hide" href="https://plus.google.com/104795813912758431648?rel=author">Sphered</a>
+    <a class="hide" href="https://gulchuk.com">Gulchuk - Web Developer</a>
 </footer>

@@ -1,4 +1,8 @@
-@extends('frontend.template')
+@extends('frontend.template', [
+    'seoTitle' => 'Контакты. Sphered - 3D панорамы, виртуальные туры в 4K, FullHD',
+    'seoDescription' => 'Контакты. все способы обратной связи. Sphered [сферед] - проект популяризации VR решений.',
+    'seoKeywords' => 'контакты, как связаться, виртуальные 3D туры, 3D панорамы, индивидуальные решения, HD качество, 4K качество'
+])
 
 @section('content')
 <div class="contact">

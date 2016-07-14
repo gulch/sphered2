@@ -111,13 +111,22 @@ class MessageController extends Controller
         return $this->jsonResponse($data);
     }
 
-    private function jsonResponse($data)
+
+    /**
+     * Генерация JSON ответа
+     * @param array $data
+     * @return string
+     */
+    private function jsonResponse(array $data) : string
     {
         return json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
-    // CSRF токен валидный?
-    private function isTokenLegal()
+    /**
+     * Проверка CSRF токена на валидность
+     * @return bool
+     */
+    private function isTokenLegal() : bool
     {
         return Input::get('_token') == csrf_token() ? true : false;
     }

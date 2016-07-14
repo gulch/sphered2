@@ -20,7 +20,8 @@ class MainController extends Controller
             
             $data['works'] = $gallery_controller->getGalleryItems('RUS',' is_commercial = 1 AND show_in_gallery = 1 ', 0, 4);
         }
-        $data['pageMetadata'] = $this->getPageMetaData();
+
+        /*$data['pageMetadata'] = $this->getPageMetaData();*/
 
         $view_name = 'frontend.pages.' . $page_name;
         if (!view()->exists($view_name)) {
