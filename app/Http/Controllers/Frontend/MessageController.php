@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use Mail;
-use Input;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Input;
+use App\Feedback;
 
 class MessageController extends Controller
 {
@@ -18,7 +19,8 @@ class MessageController extends Controller
             if (Subscribers::create([
                 'email' => $email,
                 'ip' => Request::getClientIp()
-            ])) {
+            ])
+            ) {
 
                 Mail::send('emails.subscribethanks', [], function ($message) use ($email) {
                     $message
@@ -26,7 +28,7 @@ class MessageController extends Controller
                         ->subject('[Sphered] Подписка на новости');
                 });
 
-                $data['msg']  = 'Спасибо! Вы успешно подписаны на новости.';
+                $data['msg'] = 'Спасибо! Вы успешно подписаны на новости.';
                 $data['status'] = 1;
             } else {
                 $data['msg'] = 'Произошла ошибка. Попробуйте еще раз';
@@ -44,20 +46,18 @@ class MessageController extends Controller
     {
         $data = [];
         $contact_data = Input::only('name', 'email', 'phone', 'client_message');
-        $contact_data['ip'] = Request::getClientIp();
+        $contact_data['ip'] = $this->request->getClientIp();
 
-        if (Messages::create($contact_data)) {
-            if ($this->isTokenLegal()) {
+        if (Feedback::create($contact_data)) {
 
-                Mail::send('emails.contact', $contact_data, function ($message) {
-                    $message
-                        ->to('hello@sphered.com.ua','Sphered')
-                        ->subject('[Sphered] Нове повідомлення з сайту');
-                });
+            Mail::send('emails.contact', $contact_data, function ($message) {
+                $message
+                    ->to(config('mail.from.address'), config('mail.from.name'))
+                    ->subject('[Sphered] Новое сообщение с сайта');
+            });
 
-                $data['msg'] = 'Сообщение отправлено.';
-                $data['status'] = 1;
-            }
+            $data['msg'] = 'Сообщение отправлено.';
+            $data['status'] = 1;
         } else {
             $data['msg'] = 'Произошла ошибка. Попробуйте еще раз.';
             $data['status'] = 0;
