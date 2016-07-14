@@ -6,146 +6,94 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests;
-use App\Page;
-use App\Gallery;
+use App\Item;
 use App\Type;
 use App\Category;
 use DB;
 
 class PortfolioController extends Controller
 {
-    public function showPortfolioRUS($type = null, $category = null)
+    public function showPortfolio($type = null, $category = null)
     {
-        return view('frontend.portfolio', $this->getGalleryData('RUS', $type, $category, 1));
+        return view('frontend.gallery.portfolio', $this->getGalleryData($type, $category, 1));
     }
 
-    public function showGalleryRUS($type = null, $category = null)
+    public function showGallery($type = null, $category = null)
     {
-        return view('frontend.gallery', $this->getGalleryData('RUS', $type, $category, 0));
+        return view('frontend.gallery.gallery', $this->getGalleryData($type, $category, 0));
     }
 
-    public function showWorkRUS($type, $category, $slug)
+    public function showWork($type, $category, $slug)
     {
-        return view('frontend.work', $this->getWorkData($type, $category, $slug, 'RUS'));
+        return view('frontend.gallery.work', $this->getWorkData($type, $category, $slug));
     }
 
-    public function getGalleryData(
-        $lang = 'RUS',
-        $type = null,
-        $category = null,
-        $is_commercial = 0,
-        $limit_skip = 0,
-        $limit_count = 25
-    ) {
-        $where_raw = ' is_commercial = ' . $is_commercial . ' AND show_in_gallery = 1 ';
-        if ($type) {
-            $type_id = Type::where('url_segment', $type)->firstOrFail()->id;
-            $where_raw .= ' AND id__Type = ' . $type_id;
-        } else {
-            $type = '';
+    private function getGalleryData($type_slug = null, $category_slug = null, $is_commercial = 0)
+    {
+        $data = array();
+        $items = Item::with('itemType', 'itemCategory')->where('is_commercial', $is_commercial);
+
+        if ($type_slug) {
+            $type = Type::where('url_segment', $type_slug)->firstOrFail();
+            $data['selected_type'] = $type;
+            $items->where('id__Type', $type->id);
+            $data['categories'] = $this->getAllIssetItemCategories($type->id, $is_commercial);
+
+            if ($category_slug) {
+                $category = Category::where('url_segment', $category_slug)->firstOrFail();
+                $data['selected_category'] = $category;
+                $items->where('id__Category', $category->id);
+            }
         }
 
-        if ($category) {
-            $where_raw .= ' AND id__Category = ' . Category::where('url_segment', $category)->firstOrFail()->id;
-        } else {
-            $category = '';
-        }
-
-        $categories = null;
-        if (isset($type_id)) {
-            $categories = $this->getAllIssetGalleryItemCategories($type_id, $is_commercial);
-        }
-
-        $data = Array();
-        $data['categories'] = $categories;
-        $data['types'] = $this->getAllIssetGalleryItemTypes($is_commercial);
-        $data['selected_type'] = $type;
-
-        $data['gallery_items'] = $this->getGalleryItems($lang, $where_raw, $limit_skip, $limit_count);
-
-        /*$data['pageMetadata'] = $this->getPageMetaData();*/
+        $data['types'] = $this->getAllIssetItemTypes($is_commercial);
+        $data['items'] = $items->latest()->get();
 
         return $data;
     }
 
-    public function getGalleryItems($lang, $where_raw, $limit_skip = 0, $limit_count = 25)
+    private function getAllIssetItemCategories($type_id, $is_commercial = 0)
     {
-        return Gallery::with('item' . $lang, 'itemType', 'itemCategory')
-            ->whereRaw($where_raw)
-            ->take($limit_count)
-            ->skip($limit_skip)
-            ->orderBy('created_at', 'DESC')
-            ->get();
+        return DB::select('SELECT DISTINCT c.id, c.title, c.url_segment
+                           FROM Item as i
+                           INNER JOIN Category as c ON c.id = i.id__Category
+                           WHERE i.id__Type = ?
+                             AND i.is_commercial = ?', [$type_id, $is_commercial]);
     }
 
-    public function getAllIssetGalleryItemCategories($type_id = null, $is_commercial = 0)
+    private function getAllIssetItemTypes($is_commercial = 0)
     {
-        if ($type_id) {
-            return Gallery::with('itemCategory')
-                ->whereRaw(' id__Type =  ? AND is_commercial = ? ', array($type_id, $is_commercial))
-                ->groupBy('id__Category')
-                ->get();
-
-            $items = Gallery::whereRaw(' id__Type =  ? AND is_commercial = ? ', array($type_id, $is_commercial))
-                ->select('id__Category')
-                ->groupBy('id__Category')
-                ->get();
-
-            if (sizeof($items)) {
-                $g = array();
-                foreach ($items as $item) {
-                    $g[] = $item->category_id;
-                }
-                return GalleryCategory::with('itemCategory')
-                    ->whereRaw(' id IN ( ' . implode(' , ', $g) . ' ) ')
-                    ->get();
-            }
-
-        }
-        return Gallery::with('itemCategory')
-            ->groupBy('id__Category')
-            ->get();
+        return DB::select('SELECT DISTINCT t.id, t.title, t.url_segment
+                           FROM Item as i
+                           INNER JOIN Type as t ON t.id = i.id__Type
+                           WHERE i.is_commercial = ?', [$is_commercial]);
     }
 
-    public function getAllIssetGalleryItemTypes($is_commercial = 0)
+    private function getWorkData($type_slug, $category_slug, $slug)
     {
-        return Gallery::with('itemType')
-            ->where('is_commercial', $is_commercial)
-            ->groupBy('id__Type')
-            ->get();
-    }
+        $data = array();
 
-    private function getCategoryTitleBySlug($slug)
-    {
-        return GalleryCategory::with('GalleryCategoryRUS')
+        $item = Item::with('itemType', 'itemCategory')
             ->where('url_segment', $slug)
-            ->first();
-    }
+            ->firstOrFail();
 
-    private function getWorkData($type, $category, $slug, $lang = 'RUS')
-    {
-        if ($type && $category && $slug) {
-            $data = array();
-            $data['pageMetadata'] = $this->getPageMetaData();
-            $data['item'] = Gallery::with('item'.$lang, 'itemType', 'itemType'.$lang, 'itemCategory', 'itemCategory'.$lang)
-                ->where('url_segment', '=', $slug)
-                ->firstOrFail();
-
-            $where_raw = ' show_in_gallery = 1 AND url_segment <> "' . $slug . '"';
-            if ($type) {
-                $type_id = GalleryType::where('url_segment', $type)->firstOrFail()->id;
-                $where_raw .= ' AND id__Type = ' . $type_id;
-            } else {
-                $type = '';
-            }
-            $data['similar_items'] = Gallery::with('item' . $lang, 'itemType', 'itemCategory')
-                ->whereRaw($where_raw)
-                ->take(3)
-                ->skip(0)
-                ->orderBy(DB::raw('RAND()'))
-                ->get();
-
-            return $data;
+        if($type_slug !== $item->itemType->url_segment) {
+            abort(404);
         }
+
+        if($category_slug !== $item->itemCategory->url_segment) {
+            abort(404);
+        }
+
+        $data['similar_items'] = Item::with('itemType', 'itemCategory')
+            ->where('url_segment', '<>', $item->url_segment)
+            ->where('id__Type', $item->id__Type)
+            ->take(3)
+            ->orderBy(DB::raw('RAND()'))
+            ->get();
+
+        $data['item'] = $item;
+
+        return $data;
     }
 }

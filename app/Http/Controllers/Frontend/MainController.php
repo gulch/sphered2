@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Frontend\PortfolioController;
-
 use App\Http\Requests;
+use App\Item;
 
 class MainController extends Controller
 {
@@ -16,12 +15,9 @@ class MainController extends Controller
         if (!$page_name) {
             // if $page_name is NULL - this is INDEX page
             $page_name = 'index';
-            $gallery_controller = new PortfolioController($this->request);
             
-            $data['works'] = $gallery_controller->getGalleryItems('RUS',' is_commercial = 1 AND show_in_gallery = 1 ', 0, 4);
+            $data['works'] = $this->getIndexPageItems();
         }
-
-        /*$data['pageMetadata'] = $this->getPageMetaData();*/
 
         $view_name = 'frontend.pages.' . $page_name;
         if (!view()->exists($view_name)) {
@@ -29,5 +25,14 @@ class MainController extends Controller
         }
 
         return view($view_name, $data);
+    }
+
+    private function getIndexPageItems()
+    {
+        return Item::with('itemType', 'itemCategory')
+            ->where('is_commercial', 1)
+            ->take(4)
+            ->latest()
+            ->get();
     }
 }

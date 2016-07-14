@@ -1,12 +1,12 @@
-<html lang="uk">
+<html lang="ru">
 <head>
     <meta name="robots" content="noindex,nofollow">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>{{$item->itemUKR->title}}. {{$item->itemCategoryUKR->title}} - Sphered.com.ua</title>
+    <title>{{$item->title}}. {{$item->itemCategory->title}}. {{$item->itemType->title}} - sphered.com.ua</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <script type="text/javascript" src="{{URL::to('/').$item->path_to_files}}swfobject.js"></script>
+    <script type="text/javascript" src="{{ $item->path_to_files }}swfobject.js"></script>
     <script type="text/javascript">
         function hideUrlBar() {
             if (((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))))
@@ -56,10 +56,12 @@
     </style>
 </head>
 <body>
-    <script type="text/javascript" src="{{URL::to('/').$item->path_to_files}}pano2vr_player.js"></script>
-    <script type="text/javascript" src="{{URL::to('/').$item->path_to_files}}skin.js"></script>
+    <script type="text/javascript" src="{{ $item->path_to_files }}pano2vr_player.js"></script>
+    <script type="text/javascript" src="{{ $item->path_to_files }}skin.js"></script>
     <div id="container" style="width:100%;height:100%;">
-        <p style="text-align: center">Цей контент потребує підтримку HTML5/CSS3, WebGL, або Adobe Flash Player.</p>
+        <p style="text-align: center">
+             Для этого контента нужна поддержка HTML5/CSS3, WebGL, или Adobe Flash Player.
+        </p>
     </div>
     <script type="text/javascript">
         if (swfobject.hasFlashPlayerVersion("9.0.0")) {
@@ -91,7 +93,7 @@
         }
     </script>
     <noscript>
-        <p><b>Увімкніть Javascript!</b></p>
+        <p><b>Включите поддержку Javascript!</b></p>
     </noscript>
     @include('common.counters')
 </body>

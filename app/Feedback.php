@@ -4,15 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RequestCode extends Model
+class Feedback extends Model
 {
-    protected $table = 'requestcode';
+    protected $table = 'Feedback';
     protected $fillable = [
         'name',
         'email',
-        'site',
-        'goal',
-        'workname',
+        'phone',
+        'message',
         'ip'
     ];
 }

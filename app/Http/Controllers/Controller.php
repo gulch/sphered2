@@ -20,14 +20,4 @@ class Controller extends BaseController
     {
         $this->request = $request;
     }
-
-    protected function getPageMetaData()
-    {
-        $page = Page::where('custom_url', $this->request->path())->first();
-        if (!sizeof($page)) {
-            $page = Page::find(1);
-        }
-
-        return $page;
-    }
 }

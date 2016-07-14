@@ -20,14 +20,14 @@
                                          data-echo="/uploads{{ $item->path_to_files . $item->gallery_image }}"
                                          width="420"
                                          height="420"
-                                         alt="{{ $item->itemTypeRUS->title }}"
+                                         alt="{{ $item->title }}"
                                     >
                                     <figcaption>
                                         <div class="fc_wrapper">
                                             <div class="content">
                                                 <h6 class="content_title">
-                                                    <a href="{{ URL::to('portfolio/'.$item->itemType->url_segment.'/'.$item->itemCategory->url_segment.'/'.$item->url_segment)}}">
-                                                        {{ $item->itemRUS->title }}
+                                                    <a href="{{ $item->getUrlPath() }}">
+                                                        {{ $item->title }}
                                                     </a>
                                                 </h6>
                                             </div>
@@ -65,8 +65,10 @@
             <div class="row">
                 <h2 class="heading tc1 bold span12 lineh36">
                     3D ПАНОРАМЫ
-                    <br>ВИРТУАЛЬНЫЕ ТУРЫ
-                    <br>УНИКАЛЬНЫЕ VR РЕШЕНИЯ
+                    <br>
+                    ВИРТУАЛЬНЫЕ ТУРЫ
+                    <br>
+                    УНИКАЛЬНЫЕ VR РЕШЕНИЯ
                 </h2>
             </div>
         </div>
@@ -78,7 +80,7 @@
             <h2 class="center tc7">Мы "Sphered" [сферед] - проект популяризации VR решений.</h2>
             <p class="paragraph work_desc">
                 Исследуем и популяризуем виртуальные 3D туры, сферические и цилиндрические панорамы, 3D объекты, панорамное видео, и другие VR решения.
-                Если вы заинтересованы в проекте, то будем рады познакомиться :). Все возможные способы связаться с нами на странице <a href="{{URL::to('contacts')}}" class="tc11">контактов</a>.
+                Если вы заинтересованы в проекте, то будем рады познакомиться :). Все возможные способы связаться с нами на странице <a rel="nofollow" href="/contacts" class="tc11">контактов</a>.
             </p>
         </div>
     </div>

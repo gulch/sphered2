@@ -8,8 +8,8 @@ class Category extends Model
 {
     protected $table = 'Category';
 
-    public function galleryItems()
+    public function categoryItems()
     {
-        return $this->hasMany('App\Gallery', 'id__Category');
+        return $this->hasMany('App\Item', 'id__Category');
     }
 }

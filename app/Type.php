@@ -8,8 +8,8 @@ class Type extends Model
 {
     protected $table = 'Type';
 
-    public function galleryItems()
+    public function items()
     {
-        return $this->hasMany('App\Gallery', 'id__Type');
+        return $this->hasMany('App\Item', 'id__Type');
     }
 }

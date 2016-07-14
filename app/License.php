@@ -6,17 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class License extends Model
 {
-    protected $table = 'license';
+    public $timestamps = false;
+    protected $table = 'License';
     protected $fillable = [
-        'gallery_item_id',
+        'item_id',
         'license_code',
         'domain',
         'verify_code',
         'expire_date'
     ];
 
-    public function galleryItem()
+    public function item()
     {
-        return $this->belongsTo('App\Gallery','gallery_item_id');
+        return $this->belongsTo('App\Item', 'item_id');
     }
 }
