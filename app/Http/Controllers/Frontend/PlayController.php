@@ -22,7 +22,7 @@ class PlayController extends Controller
             ]);
         }
 
-        return view('frontend.gallery.play', compact($item));
+        return view('frontend.gallery.play', ['item' => $item]);
     }
 
     private function getRefererDomain()

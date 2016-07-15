@@ -2,11 +2,11 @@
 <head>
     <meta name="robots" content="noindex,nofollow">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>{{$item->title}}. {{$item->itemCategory->title}}. {{$item->itemType->title}} - sphered.com.ua</title>
+    <title>{{ $item->title }}. {{ $item->itemCategory->title }}. {{ $item->itemType->title }} - sphered.com.ua</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <script type="text/javascript" src="{{ $item->path_to_files }}swfobject.js"></script>
+    <script type="text/javascript" src="/uploads{{ $item->path_to_files }}swfobject.js"></script>
     <script type="text/javascript">
         function hideUrlBar() {
             if (((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))))
@@ -56,8 +56,8 @@
     </style>
 </head>
 <body>
-    <script type="text/javascript" src="{{ $item->path_to_files }}pano2vr_player.js"></script>
-    <script type="text/javascript" src="{{ $item->path_to_files }}skin.js"></script>
+    <script type="text/javascript" src="/uploads{{ $item->path_to_files }}pano2vr_player.js"></script>
+    <script type="text/javascript" src="/uploads{{ $item->path_to_files }}skin.js"></script>
     <div id="container" style="width:100%;height:100%;">
         <p style="text-align: center">
              Для этого контента нужна поддержка HTML5/CSS3, WebGL, или Adobe Flash Player.
@@ -75,11 +75,11 @@
             attributes.id = "pano";
             attributes.name = "pano";
             attributes.align = "middle";
-            flashvars.skinxml="{{URL::to('/').$item->path_to_files}}skin.xml";
-            flashvars.panoxml="{{URL::to('/').$item->path_to_files.$item->path_to_xml}}";
+            flashvars.skinxml="/uploads{{ $item->path_to_files }}skin.xml";
+            flashvars.panoxml="/uploads{{ $item->path_to_files . $item->path_to_xml}}";
             params.base=".";
             swfobject.embedSWF(
-                "{{URL::to('/').$item->path_to_files}}pano2vr_player.swf", "container",
+                "/uploads{{ $item->path_to_files }}pano2vr_player.swf", "container",
                 "100%", "100%",
                 "9.0.0", "",
                 flashvars, params, attributes);
@@ -88,13 +88,13 @@
         if (ggHasHtml5Css3D() || ggHasWebGL()) {
             pano=new pano2vrPlayer("container");
             skin=new pano2vrSkin(pano);
-            pano.readConfigUrl("{{URL::to('/').$item->path_to_files.$item->path_to_xml}}");
+            pano.readConfigUrl("/uploads{{ $item->path_to_files . $item->path_to_xml }}");
             hideUrlBar();
         }
     </script>
     <noscript>
         <p><b>Включите поддержку Javascript!</b></p>
     </noscript>
-    @include('common.counters')
+    @include('frontend._partials.counters')
 </body>
 </html>
