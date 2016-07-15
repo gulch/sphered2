@@ -21,7 +21,9 @@
                         <div class="meta">
                             <h5 class="label tc12">E-Mail</h5>
                             <h6 class="value">
-                                <a class="tc12" href="mailto:{{ Html::obfuscate('hello@sphered.com.ua') }}">{{ Html::obfuscate('hello@sphered.com.ua') }}</a>
+                                <a rel="nofollow" class="tc12" href="mailto:{{ Html::obfuscate('hello@sphered.com.ua') }}">
+                                    {{ Html::obfuscate('hello@sphered.com.ua') }}
+                                </a>
                             </h6>
                         </div>
                     </li>
@@ -54,22 +56,17 @@
 <div class="form_box container">
     <div class="form new_project">
         <form id="contact_form" action="/message/contact" method="post">
-
             <div class="row">
                 <div class="span12">
                     <h4 class="heading tc12 txt_upper bold">Оставьте сообщение</h4>
                 </div>
             </div>
-
             <div class="row-fluid">
-                <div class="element span4">
+                <div class="element span6">
                     <input class="span12" name="name" required type="text" placeholder="Имя*" />
                 </div>
-                <div class="element span4">
-                    <input class="span12" name="email" required type="email" placeholder="E-mail*" />
-                </div>
-                <div class="element span4">
-                    <input class="span12" name="phone" type="tel" placeholder="Телефон" />
+                <div class="element span6">
+                    <input class="span12" name="email" required type="email" placeholder="Email*" />
                 </div>
             </div>
             <div class="row-fluid">

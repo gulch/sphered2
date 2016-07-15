@@ -4,34 +4,34 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <h4>Заявка на новий проект</h4>
+        <h4>Добавление работы</h4>
         <table>
             <tr>
-                <td>Ім'я:</td>
+                <td>Имя: </td>
                 <td>{{ $name }}</td>
             </tr>
             <tr>
-                <td>Email:</td>
+                <td>Email: </td>
                 <td>{{ $email }}</td>
             </tr>
             <tr>
-                <td>Телефон:</td>
+                <td>Телефон: </td>
                 <td>{{ $phone }}</td>
             </tr>
             <tr>
-                <td>Веб-сайт:</td>
-                <td>{{ $website ? $website : 'Не вказано'}}</td>
+                <td>Веб-сайт: </td>
+                <td>{{ $website }}</td>
             </tr>
             <tr>
-                <td>Тип роботи:</td>
-                <td>{{ $project_type ? $project_type : 'Не вказано' }}</td>
+                <td>Тип работи: </td>
+                <td>{{ $project_type }}</td>
             </tr>
             <tr>
-                <td>Діяльність:</td>
-                <td>{{ $business ? $business : 'Не вказано' }}</td>
+                <td>Кто: </td>
+                <td>{{ $business }}</td>
             </tr>
         </table>
-        <p>Опис:</p>
+        <p>Описание: </p>
         <p>{{ nl2br($description) }}</p>
     </body>
 </html>

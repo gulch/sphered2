@@ -1,4 +1,4 @@
-@extends('emails.rus.template')
+@extends('emails.template')
 
 @section('subject')
     Вы успешно подписаны!

@@ -13,8 +13,12 @@
                             <p class="subscribe_header tc1 txt_upper">Подпишитесь на рассылку</p>
                             <div class="inputs clearfix">
                                 <form id="subscribe" action="/message/subscribe" method="post">
-                                    <input class="email tc9 left" type="email" name="email" placeholder="E-mail*"/>
-                                    <input type="hidden" name="lang" value="rus"/>
+                                    <input class="email tc9 left"
+                                           type="email"
+                                           name="email"
+                                           required
+                                           placeholder="Email"
+                                    >
                                     <div class="button bg8 right" onclick="$('#subscribe').submit();">
                                         <i class="fa fa-paper-plane fa-lg tc1"></i>
                                     </div>

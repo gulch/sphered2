@@ -17,19 +17,19 @@
             <form id="new_project" action="/message/start" method="post">
                 <div class="row-fluid">
                     <div class="element span6">
-                        <input class="span12" name="name" required type="text" placeholder="Имя*" />
+                        <input class="span12" name="name" required type="text" placeholder="Имя*">
                     </div>
                     <div class="element span6">
-                        <input class="span12" name="email" required type="text" placeholder="E-mail*" />
+                        <input class="span12" name="email" required type="text" placeholder="Email*">
                     </div>
                 </div>
 
                 <div class="row-fluid">
                     <div class="element span6">
-                        <input class="span12" name="phone" type="text" placeholder="Телефон" />
+                        <input class="span12" name="phone" type="text" placeholder="Телефон">
                     </div>
                     <div class="element span6">
-                        <input class="span12" name="website" type="text" placeholder="Веб-сайт" />
+                        <input class="span12" name="website" type="text" placeholder="Веб-сайт">
                     </div>
                 </div>
 
@@ -70,8 +70,6 @@
                     <a class="close fa" data-dismiss="alert" href="javascript:void(0)">×</a>
                     <span class="msg tc2"></span>
                 </div>
-                {{ csrf_token() }}
-                <input type="hidden" value="rus" name="lang"/>
             </form>
         </div>
     </div>

@@ -2,30 +2,36 @@
 
 namespace App\Http\Controllers\Frontend;
 
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Input;
 use App\Feedback;
+use App\Subscriber;
+use App\CodeRequest;
 
 class MessageController extends Controller
 {
-    public function subscribe()
+    /**
+     * Подписка на новости
+     * @return string
+     */
+    public function subscribe() : string
     {
         $data = [];
         $email = Input::get('email');
 
-        if (!Subscribers::where('email', $email)->first()) {
-            if (Subscribers::create([
+        if (!Subscriber::where('email', $email)->first()) {
+            $subscriber = Subscriber::create([
                 'email' => $email,
-                'ip' => Request::getClientIp()
-            ])
-            ) {
+                'ip' => $this->request->getClientIp()
+            ]);
+
+            if ($subscriber) {
 
                 Mail::send('emails.subscribethanks', [], function ($message) use ($email) {
-                    $message
-                        ->to($email)
-                        ->subject('[Sphered] Подписка на новости');
+                    $message->to($email)->subject('[Sphered] Подписка на новости');
                 });
 
                 $data['msg'] = 'Спасибо! Вы успешно подписаны на новости.';
@@ -35,24 +41,28 @@ class MessageController extends Controller
                 $data['status'] = 0;
             }
         } else {
-            $data['msg'] = 'Такой email уже существует';
+            $data['msg'] = 'Вы уже подписаны';
             $data['status'] = 0;
         }
 
         return $this->jsonResponse($data);
     }
 
-    public function contact()
+    /**
+     * Сообщение со страницы контакты
+     * @return string
+     */
+    public function contact() : string
     {
         $data = [];
-        $contact_data = Input::only('name', 'email', 'phone', 'client_message');
+        $contact_data = Input::only('name', 'email', 'client_message');
         $contact_data['ip'] = $this->request->getClientIp();
 
         if (Feedback::create($contact_data)) {
 
             Mail::send('emails.contact', $contact_data, function ($message) {
                 $message
-                    ->to(config('mail.from.address'), config('mail.from.name'))
+                    ->to(config('mail.from.address'))
                     ->subject('[Sphered] Новое сообщение с сайта');
             });
 
@@ -66,39 +76,39 @@ class MessageController extends Controller
         return $this->jsonResponse($data);
     }
 
-    public function start()
+    /**
+     * Форма "ДОБАВИТЬ СВОЮ РАБОТУ"
+     * @return string
+     */
+    public function start() : string
     {
         $data = [];
         $contact_data = Input::only('name', 'email', 'phone', 'website', 'project_type', 'business', 'description');
 
-        if ($this->isTokenLegal()) {
+        Mail::send('emails.start', $contact_data, function ($message) {
+            $message->to(config('mail.from.address'))->subject('[Sphered] Заявка на новый проект');
+        });
 
-            Mail::send('emails.start', $contact_data, function ($message) {
-                $message
-                    ->to('contact@sphered.com.ua', 'Sphered')
-                    ->subject('[Sphered] Заявка на новый проект');
-            });
-
-            $data['msg'] = 'Сообщение отправлено.';
-            $data['status'] = 1;
-        }
+        $data['msg'] = 'Сообщение отправлено.';
+        $data['status'] = 1;
 
         return $this->jsonResponse($data);
     }
 
-    // Запрос кода вставки на сайте
-    public function requestcode()
+    /**
+     * Запрос кода вставки на сайте
+     * @return string
+     */
+    public function requestcode() : string
     {
         $data = [];
         $contact_data = Input::only('name', 'email', 'site', 'goal', 'workname');
-        $contact_data['ip'] = Request::getClientIp();
+        $contact_data['ip'] = $this->request->getClientIp();
 
-        if (Requestcode::create($contact_data)) {
+        if (CodeRequest::create($contact_data)) {
 
             Mail::send('emails.requestcode', $contact_data, function ($message) {
-                $message
-                    ->to('hello@sphered.com.ua', 'Sphered')
-                    ->subject('[Sphered] Запрос кода вставкии');
+                $message->to(config('mail.from.address'))->subject('[Sphered] Запрос кода вставкии');
             });
 
             $data['msg'] = 'Заявка отправлена.';
@@ -110,7 +120,6 @@ class MessageController extends Controller
 
         return $this->jsonResponse($data);
     }
-
 
     /**
      * Генерация JSON ответа
