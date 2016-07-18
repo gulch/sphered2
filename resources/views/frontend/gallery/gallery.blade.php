@@ -40,9 +40,9 @@ $seoKeywords .= 'галерея работ, галерея панорам, 3d э
                 @foreach ($items as $item)
                     <div class="item span4 active"">
                         <figure>
-                            <img class="thumb"
-                                 src="/assets/img/ph_img.png"
-                                 data-echo="/uploads{{ $item->path_to_files . $item->gallery_image }}"
+                            <img class="lazyload"
+                                 src="/assets/img/placeholder.png"
+                                 data-src="/uploads{{ $item->path_to_files . $item->gallery_image }}"
                                  width="420"
                                  height="420"
                                  alt="{{ $item->title }}"

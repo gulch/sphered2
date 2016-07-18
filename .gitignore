@@ -1,7 +1,6 @@
-/vendor
-/node_modules
-/public/storage
+/vendor/
+/.idea/
+/public/uploads/
+/node_modules/
 /public/sitemap.xml
 .env
-/.idea
-/public/uploads/
