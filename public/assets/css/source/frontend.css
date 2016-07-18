@@ -2,13 +2,21 @@
     font-family: 'exo2';
     font-style: normal;
     font-weight: normal;
-    src: local('Exo 2 Medium'), local('Exo2-Medium'), url('/assets/font/exo2/exo2medium.woff') format('woff');
+    src: local('Exo 2 Medium'),
+         local('Exo2-Medium'),
+         url('/assets/font/exo2/medium.woff2') format('woff2'),
+         url('/assets/font/exo2/medium.woff') format('woff'),
+         url('/assets/font/exo2/medium.ttf') format('ttf');
 }
 @font-face {
     font-family: 'exo2';
     font-style: normal;
     font-weight: bold;
-    src: local('Exo 2 Bold'), local('Exo2-Bold'), url('/assets/font/exo2/exo2bold.woff') format('woff');
+    src: local('Exo 2 Bold'),
+         local('Exo2-Bold'),
+         url('/assets/font/exo2/bold.woff2') format('woff2'),
+         url('/assets/font/exo2/bold.woff') format('woff'),
+         url('/assets/font/exo2/bold.ttf') format('ttf');
 }
 
 html,

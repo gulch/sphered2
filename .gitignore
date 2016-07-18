@@ -2,5 +2,8 @@
 /.idea/
 /public/uploads/
 /node_modules/
+/public/assets/js/build/
+/public/assets/css/build/
 /public/sitemap.xml
 .env
+/public/build/

@@ -26,8 +26,7 @@
     Preload
     * https://www.w3.org/TR/preload/
 --}}
-{{--<link rel="preload" href="{{ config('app.jquery_path') }}" as="script">
-<link rel="preload" href="{{ elixir('assets/css/build/f.css') }}" type="text/css" as="style">--}}
+<link rel="preload" href="/assets/vendor/jquery/jquery.min.js" as="script">
 
 @if(isset($canonical) && $canonical)
     <link rel="canonical" href="{!! $canonical !!}" />

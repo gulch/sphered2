@@ -10,7 +10,7 @@
     "gulp": "^3.9.1"
   },
   "devDependencies": {
-    "autoprefixer-core": "^6.0.1",
+    "autoprefixer": "^6.0.1",
     "css-mqpacker": "^5.0.1",
     "gulp-concat": "^2.6.0",
     "gulp-cssnano": "^2.1.2",

@@ -56,7 +56,7 @@
 <div class="main_box">
     <div class="container">
         <div class="row">
-            <h1 class="title tc7 bold span12">Все о мультимедийных решених на основе панорам и 3D объектов</h1>
+            <h1 class="title tc7 bold span12">Все о мультимедийных решениях на основе панорам и 3D объектов</h1>
         </div>
     </div>
     <div class="main_box rounded_bg_up about_us">

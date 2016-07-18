@@ -208,8 +208,9 @@
                     @foreach($similar_items as $similar_item)
                         <div class="item span4 active">
                             <figure>
-                                <img class="thumb" src="/assets/img/ph_img.png"
-                                     data-echo="/uploads{{ $similar_item->path_to_files . $similar_item->gallery_image }}"
+                                <img class="lazyload"
+                                     src="/assets/img/placeholder.png"
+                                     data-src="/uploads{{ $similar_item->path_to_files . $similar_item->gallery_image }}"
                                      width="420"
                                      height="420"
                                      alt="{{ $similar_item->title }}"
@@ -240,7 +241,7 @@
     @endif
 
     @if(!Agent::isMobile() && !Agent::isTablet() && !$target_blank)
-        <link rel="stylesheet" href="/assets/plugins/lightbox/themes/default/jquery.lightbox.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="/assets/vendor/lightbox/themes/default/jquery.lightbox.min.css" type="text/css" media="screen"/>
         <script type="text/javascript">
             document.onreadystatechange = function()
             {
@@ -248,8 +249,8 @@
                 {
                     var sce = document.createElement('script');
                     sce.type = 'text/javascript';
-                    sce.async = true;
-                    sce.src = "/assets/plugins/lightbox/lightbox.js";
+                    sce.defer = true;
+                    sce.src = "/assets/vendor/lightbox/lightbox.min.js";
                     var s = document.getElementsByTagName('script')[0];
                     s.parentNode.insertBefore(sce, s);
                 }
