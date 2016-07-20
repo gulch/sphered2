@@ -1,47 +1,47 @@
-@extends('auth.template')
+@extends('auth.template', [
+    'title' => 'Восстановление пароля :: Sphered'
+])
 
-<!-- Main Content -->
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
+    <div class="ui container">
+        <div class="ui centered stackable grid">
+            <div class="six wide column">
+                <div class="ui left aligned segment">
+
+                    <h2 class="ui teal header">
+                        <div class="content">
+                            Восстановление пароля
+                        </div>
+                    </h2>
+
+                    @if(session('status'))
+                        <div class="ui icon success message">
+                            <i class="check icon"></i>
+                            <div class="content">
+                                {{ session('status') }}
+                            </div>
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+                    @include('backend._partials.errorsmessage')
+
+                    <form class="ui form" action="/password/email" method="POST">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
+                                <i class="mail icon"></i>
+                            </div>
+                        </div>
+
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-envelope"></i> Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
+                        <button class="ui basic large button" type="submit">
+                            <i class="undo icon"></i>
+                            Восстановить
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

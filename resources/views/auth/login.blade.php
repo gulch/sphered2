@@ -1,66 +1,51 @@
-@extends('auth.template')
+@extends('auth.template', [
+    'title' => 'Авторизация :: Sphered'
+])
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+    <div class="ui container">
+        <div class="ui centered stackable grid">
+            <div class="six wide column">
+                <div class="ui left aligned segment">
+
+                    <h2 class="ui teal header">
+                        <div class="content">
+                            Авторизация
+                        </div>
+                    </h2>
+
+                    @include('backend._partials.errorsmessage')
+
+                    <form class="ui form" action="/login" method="POST">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
+                                <i class="mail icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <input type="password" name="password" placeholder="Пароль">
+                                <i class="lock icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="ui checkbox">
+                                <input name="remember" type="checkbox" tabindex="0" class="hidden">
+                                <label>Запомнить меня</label>
+                            </div>
+                        </div>
+
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i> Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                            </div>
-                        </div>
+                        <button class="ui basic large button" type="submit">
+                            Войти <i class="sign in icon"></i>
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
