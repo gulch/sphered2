@@ -218,6 +218,7 @@ return [
 
     ],
 
-    'admin_path' => env('ADMIN_PATH', 'admin')
+    'admin_path' => env('ADMIN_PATH', 'admin'),
+    'image_upload_path' => env('IMAGE_UPLOAD_PATH', '/uploads/img')
 
 ];
