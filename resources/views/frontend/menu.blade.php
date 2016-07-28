@@ -22,6 +22,11 @@
                     </ul>
                 </li>
                 <li><a href="/faq">FAQ</a></li>
+                <li>
+                    <a href="/blog" @if(Request::segment(1) === 'blog') class="active" @endif>
+                        Блог
+                    </a>
+                </li>
                 <li><a href="/contacts">Контакты</a></li>
             </ul>
         </div>
