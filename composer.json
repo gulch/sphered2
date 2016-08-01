@@ -11,7 +11,9 @@
         "jenssegers/agent": "^2.3",
         "laravelcollective/html": "^5.2",
         "gulch/gminify": "dev-master",
-        "roumen/sitemap": "^2.6"
+        "roumen/sitemap": "^2.6",
+        "intervention/image": "^2.3",
+        "thujohn/rss": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
