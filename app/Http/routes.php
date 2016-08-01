@@ -13,8 +13,13 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 
     // Backend routes
-    Route::group(['prefix' => config('app.admin_path'), 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => config('app.admin_segment_name'), 'middleware' => 'auth'], function () {
         Route::get('/', 'Backend\DashboardController@index');
+
+        /* Статьи в блоге */
+        Route::resource('tags', 'Backend\TagsController');
+        Route::post('tags/{id}/publish', 'Backend\TagsController@publish');
+        Route::post('tags/{id}/unpublish', 'Backend\TagsController@unpublish');
     });
 });
 
