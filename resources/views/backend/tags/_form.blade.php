@@ -35,20 +35,6 @@
 </div>
 
 <div class="field">
-    {!! Form::label('id__Image','Изображение*') !!}
-    
-    @include('backend._partials.image_uploader', [
-        'field_name' => 'id__Image',
-        'id' => isset($tag) ? $tag->image_id : null,
-        'image' => isset($tag) ? $tag->image : null,
-        'key' => uniqid(),
-        'setup' => 'tag',
-        'path' => config('app.image_upload_path')
-     ])
-    
-</div>
-
-<div class="field">
     @include('backend._partials.seo_form')
 </div>
 

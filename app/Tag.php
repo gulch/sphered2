@@ -40,7 +40,7 @@ class Tag extends Model
 
     public function articles()
     {
-        return $this->belongsToMany('App\Article', 'Article_Tag', 'id__Article', 'id__Tag');
+        return $this->belongsToMany('App\Article', 'Article_Tag', 'id__Tag', 'id__Article');
     }
 
     public function image()

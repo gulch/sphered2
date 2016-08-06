@@ -37,6 +37,8 @@ Route::group(['middleware' => 'minifyHTML'], function () {
     Route::get('blog', 'Frontend\BlogController@index');
     Route::get('blog/{slug}', 'Frontend\BlogController@show');
 
+    Route::get('blog/tag/{slug}', 'Frontend\BlogController@indexByTag');
+
     Route::get('portfolio/{type?}/{category?}', 'Frontend\PortfolioController@showPortfolio');
     Route::get('portfolio/{type}/{category}/{slug}', 'Frontend\PortfolioController@showWork');
 

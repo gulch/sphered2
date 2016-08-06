@@ -27,4 +27,14 @@ class BlogController extends Controller
 
         return view('frontend.blog.item', $data);
     }
+
+    public function indexByTag($slug)
+    {
+        $data = [
+            'tag' => Tag::slug($slug)->firstOrFail(),
+            'tags' => Tag::all()
+        ];
+
+        return view('frontend.blog.tag', $data);
+    }
 }
