@@ -15,6 +15,11 @@ class Article extends Model
         return $query->where('slug', $slug);
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', 1);
+    }
+
     /* ------------- Relations ------------ */
 
     public function image()

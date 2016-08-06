@@ -11,7 +11,7 @@ class BlogController extends Controller
     public function index()
     {
         $data = [
-            'articles' => Article::with('image')->latest()->get(),
+            'articles' => Article::with('image')->published()->latest()->get(),
             'tags' => Tag::all()
         ];
 
@@ -22,7 +22,7 @@ class BlogController extends Controller
     {
         $data = [
             'article' => Article::slug($slug)->firstOrFail(),
-            'tags' => Tag::all()
+            'tags' => $this->getPublishedTags()
         ];
 
         return view('frontend.blog.item', $data);
@@ -32,9 +32,14 @@ class BlogController extends Controller
     {
         $data = [
             'tag' => Tag::slug($slug)->firstOrFail(),
-            'tags' => Tag::all()
+            'tags' => $this->getPublishedTags()
         ];
 
         return view('frontend.blog.tag', $data);
+    }
+
+    private function getPublishedTags()
+    {
+        return Tag::published()->get();
     }
 }

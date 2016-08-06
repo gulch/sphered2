@@ -3,6 +3,10 @@
 // Генерация файла sitemap.xml
 Route::get('create/sitemap', 'SitemapController@generateSitemap');
 
+/* Генерация RSS */
+Route::get('feed', 'RssController@generate');
+Route::get('rss', 'RssController@generate');
+
 Route::group(['middleware' => ['admin']], function () {
     // Auth routes
     Route::get('login', 'Auth\AuthController@showLoginForm');

@@ -14,7 +14,7 @@
 <link rel="image_src" href="{{ $seoImage }}">
 
 {{-- RSS Feed --}}
-{{--<link rel="alternate" type="application/rss+xml" title="Sphered RSS Feed" href="{{ url('feed') }}">--}}
+<link rel="alternate" type="application/rss+xml" title="Sphered RSS Feed" href="{{ url('feed') }}">
 
 {{--
     Preconnect

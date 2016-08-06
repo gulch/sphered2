@@ -58,7 +58,7 @@
         <div class="container">
             <div class="row">
                 <div class="span10 offset1">
-                    <div class="copy tc10 left">&copy; 2012-2016 SPHERED</div>
+                    <div class="copy tc10 left">&copy; 2016 SPHERED</div>
                     <div class="desing tc10 right">
                         POWERED BY <a class="tc11" target="_blank" href="http://thetalab.tk/">THETA LAB</a>
                         &nbsp;&#8226;&nbsp;
