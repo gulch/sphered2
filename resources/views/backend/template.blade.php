@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="/assets/vendor/semantic/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/source/backend.css">
 </head>
 <body>
     {{-- Меню --}}
@@ -17,7 +18,9 @@
             <i class="dashboard icon"></i>
             Админ панель
         </a>
-        <a href="/{{ config('app.admin_segment_name') }}/tags" class="item">
+        <a href="/{{ config('app.admin_segment_name') }}/tags"
+           class="item @if(Request::segment(1) === 'tags') active @endif"
+        >
             <i class="tags icon"></i>
             Теги
         </a>

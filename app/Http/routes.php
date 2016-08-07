@@ -8,23 +8,26 @@ Route::get('feed', 'RssController@generate');
 Route::get('rss', 'RssController@generate');
 
 Route::group(['middleware' => ['admin']], function () {
-    // Auth routes
-    Route::get('login', 'Auth\AuthController@showLoginForm');
-    Route::post('login', 'Auth\AuthController@login');
-    Route::get('logout', 'Auth\AuthController@logout');
-    Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-    Route::post('password/reset', 'Auth\PasswordController@reset');
-    Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 
-    // Backend routes
+    Route::group(['middleware' => 'VerifyCsrfToken'], function () {
+        /* Auth routes */
+        Route::get('login', 'Auth\AuthController@showLoginForm');
+        Route::post('login', 'Auth\AuthController@login');
+        Route::get('logout', 'Auth\AuthController@logout');
+        Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+        Route::post('password/reset', 'Auth\PasswordController@reset');
+        Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+    });
+
+    /* Backend routes */
     Route::group(['prefix' => config('app.admin_segment_name'), 'middleware' => 'auth'], function () {
         Route::get('/', 'Backend\DashboardController@index');
-
         /* Статьи в блоге */
         Route::resource('tags', 'Backend\TagsController');
         Route::post('tags/{id}/publish', 'Backend\TagsController@publish');
         Route::post('tags/{id}/unpublish', 'Backend\TagsController@unpublish');
     });
+
 });
 
 // Сообщения с форм
@@ -36,7 +39,7 @@ Route::group(['prefix' => 'message'], function () {
 });
 
 // Frontend
-Route::group(['middleware' => 'minifyHTML'], function () {
+Route::group(['middleware' => 'MinifyHTML'], function () {
 
     Route::get('blog', 'Frontend\BlogController@index');
     Route::get('blog/{slug}', 'Frontend\BlogController@show');

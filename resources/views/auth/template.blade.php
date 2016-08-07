@@ -25,6 +25,6 @@
 
     <script defer src="/assets/vendor/jquery/jquery.min.js"></script>
     <script defer src="/assets/vendor/semantic/semantic.min.js"></script>
-    <script defer src="/assets/js/source/admin.js"></script>
+    <script defer src="/assets/js/source/backend.js"></script>
 </body>
 </html>

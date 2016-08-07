@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Validator;
+use Session;
 use App\Http\Controllers\Controller;
 use App\Tag;
 
@@ -41,6 +42,7 @@ class TagsController extends Controller
         if (is_null($tag)) {
             return json_encode(['message' => 'Запись не найдена']);
         } else {
+            $tag->articles()->sync([]);
             $tag->delete();
         }
 
@@ -79,7 +81,7 @@ class TagsController extends Controller
 
             $validation['id'] = $tag->id;
 
-            $tag->update($this->setIsPublished(array_map('trim', $request->all())));
+            $tag->update($this->setIsPublished(array_map('trim', $this->request->all())));
         }
 
         return $validation;

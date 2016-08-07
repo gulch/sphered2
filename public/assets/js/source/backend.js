@@ -23,11 +23,6 @@ function putCount($elem) {
 }
 
 $(document).ready(function () {
-    $('.ui.checkbox').checkbox();
-
-    $('.message .close').on('click', function () {
-        $(this).closest('.message').transition('fade');
-    });
 
     $('#translit_button').click(function () {
         var title = $('input[name="title"]').val();
