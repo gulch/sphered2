@@ -12,7 +12,7 @@ class BlogController extends Controller
     {
         $data = [
             'articles' => Article::with('image')->published()->latest()->get(),
-            'tags' => Tag::all()
+            'tags' => $this->getPublishedTags()
         ];
 
         return view('frontend.blog.index', $data);

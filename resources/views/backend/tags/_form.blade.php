@@ -31,7 +31,7 @@
 
 <div class="field">
     {!! Form::label('content', 'Контент') !!}
-    {!! Form::textarea('content', null, ['class' => 'redactor']) !!}
+    {!! Form::textarea('content', null, ['class' => 'wysiwyg-editor']) !!}
 </div>
 
 <div class="field">
@@ -40,5 +40,4 @@
 
 @include('backend._partials.submit_buttons')
 
-{{--
-@include('backend._partials.redactor')--}}
+@include('backend._partials.editor')

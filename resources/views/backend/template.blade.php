@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" type="text/css" href="/assets/vendor/semantic/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/source/backend.css">
+
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
 </head>
 <body>
     {{-- Меню --}}
@@ -34,7 +36,6 @@
         @yield('content')
     </div>
 
-    <script defer src="/assets/vendor/jquery/jquery.min.js"></script>
     <script defer src="/assets/vendor/semantic/semantic.min.js"></script>
     <script defer src="/assets/js/source/general.js"></script>
     <script defer src="/assets/js/source/backend.js"></script>
