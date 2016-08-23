@@ -2909,3 +2909,10 @@ span.msg {
     box-shadow: 0 5px 0 #efefef;
     padding-top: 36px;
 }
+
+.fr-emoticon-img {
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    line-height: 24px;
+}
