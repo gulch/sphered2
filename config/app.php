@@ -220,6 +220,9 @@ return [
     ],
 
     'admin_segment_name' => env('ADMIN_SEGMENT_NAME', 'admin'),
-    'image_upload_path' => env('IMAGE_UPLOAD_PATH', '/uploads/img')
-
+    'image_upload_path' => env('IMAGE_UPLOAD_PATH', '/uploads/img'),
+    'post_image_upload_path' => env('POST_IMAGE_UPLOAD_PATH', '/uploads/img/post'),
+    'editor_image_upload_path' => env('EDITOR_IMAGE_UPLOAD_PATH', '/uploads/img/editor'),
+    'thumb_image_upload_path' => env('THUMB_IMAGE_UPLOAD_PATH', '/uploads/img/thumb'),
+    'original_image_upload_path' => env('ORIGINAL_IMAGE_UPLOAD_PATH', '/uploads/img/original'),
 ];

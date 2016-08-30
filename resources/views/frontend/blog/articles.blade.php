@@ -5,7 +5,7 @@
                 <figure class="media">
 
                     <a href="/blog/{{ $article->slug }}">
-                        <img src="{{ config('app.image_upload_path') . $article->image->path }}"
+                        <img src="{{ config('app.post_image_upload_path') . $article->image->path }}"
                              alt="{{ $article->image->alt }}"
                         >
                     </a>

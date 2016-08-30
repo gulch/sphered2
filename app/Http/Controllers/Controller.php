@@ -20,4 +20,9 @@ class Controller extends BaseController
     {
         $this->request = $request;
     }
+
+    protected function jsonResponse($data)
+    {
+        return json_encode($data, JSON_UNESCAPED_UNICODE);
+    }
 }

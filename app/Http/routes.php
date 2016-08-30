@@ -26,6 +26,9 @@ Route::group(['middleware' => ['admin']], function () {
         Route::resource('tags', 'Backend\TagsController');
         Route::post('tags/{id}/publish', 'Backend\TagsController@publish');
         Route::post('tags/{id}/unpublish', 'Backend\TagsController@unpublish');
+
+        /* Изображения */
+        Route::post('image/upload', 'Backend\ImagesController@upload');
     });
 
 });

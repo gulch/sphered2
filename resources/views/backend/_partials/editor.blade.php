@@ -6,37 +6,19 @@
 <link href="/assets/vendor/froala/2.3.4/css/froala_style.css" rel="stylesheet" type="text/css">
 
 {{-- Froala Plugins CSS --}}
-<link href="/assets/vendor/froala/2.3.4/css/plugins/char_counter.css"
-      rel="stylesheet"
-      type="text/css"
->
-<link href="/assets/vendor/froala/2.3.4/css/plugins/code_view.css"
-      rel="stylesheet"
-      type="text/css"
->
-<link href="/assets/vendor/froala/2.3.4/css/plugins/colors.css"
-      rel="stylesheet"
-      type="text/css"
->
-<link href="/assets/vendor/froala/2.3.4/css/plugins/emoticons.css"
-      rel="stylesheet"
-      type="text/css"
->
-<link href="/assets/vendor/froala/2.3.4/css/plugins/table.css"
-      rel="stylesheet"
-      type="text/css"
->
-<link href="/assets/vendor/froala/2.3.4/css/plugins/video.css"
-      rel="stylesheet"
-      type="text/css"
->
-<link href="/assets/vendor/froala/2.3.4/css/plugins/image.css"
-      rel="stylesheet"
-      type="text/css"
->
+<link href="/assets/vendor/froala/2.3.4/css/plugins/char_counter.css" rel="stylesheet" type="text/css">
+<link href="/assets/vendor/froala/2.3.4/css/plugins/code_view.css" rel="stylesheet" type="text/css">
+<link href="/assets/vendor/froala/2.3.4/css/plugins/colors.css" rel="stylesheet" type="text/css">
+<link href="/assets/vendor/froala/2.3.4/css/plugins/emoticons.css" rel="stylesheet" type="text/css">
+<link href="/assets/vendor/froala/2.3.4/css/plugins/table.css" rel="stylesheet" type="text/css">
+<link href="/assets/vendor/froala/2.3.4/css/plugins/video.css" rel="stylesheet" type="text/css">
+<link href="/assets/vendor/froala/2.3.4/css/plugins/image.css" rel="stylesheet" type="text/css">
 
 {{-- Include Code Mirror CSS --}}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css"
+      rel="stylesheet"
+      type="text/css"
+>
 
 {{-- Froala JS --}}
 <script src="/assets/vendor/froala/2.3.4/js/froala_editor.min.js"></script>
@@ -73,7 +55,7 @@
             imageUploadURL: '/{{ config('app.admin_segment_name') }}/image/upload',
 
             imageUploadParams: {
-                type: 'editor'
+                setup: 'editor'
             }
         });
 

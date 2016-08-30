@@ -15,7 +15,7 @@
                             {{ $article->title }}
                         </h1>
                         <figure class="media">
-                            <img src="{{ config('app.image_upload_path') . $article->image->path }}"
+                            <img src="{{ config('app.post_image_upload_path') . $article->image->path }}"
                                  alt="{{ $article->image->alt }}"
                             >
                             <figcaption class="caption tc12 bold">
