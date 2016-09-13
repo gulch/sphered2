@@ -26,6 +26,12 @@
             <i class="tags icon"></i>
             Теги
         </a>
+        <a href="/{{ config('app.admin_segment_name') }}/images"
+           class="item @if(Request::segment(1) === 'images') active @endif"
+        >
+            <i class="file image outline icon"></i>
+            Изображения
+        </a>
         <div class="right menu">
             <a href="/logout" class="ui item">Выйти</a>
         </div>

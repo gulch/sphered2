@@ -6,12 +6,32 @@ use App\Http\Controllers\Controller;
 use App\Image;
 use App\Article;
 use Intervention\Image\ImageManagerStatic as InterventionImage;
+use Session;
+use URL;
 
 class ImagesController extends Controller
 {
     public function index()
     {
-        return view('backend.images.list');
+        $images = Image::latest()->paginate(24);
+
+        return view('backend.images.list', compact('images'));
+    }
+
+    public function edit($id)
+    {
+        $image = Image::findOrFail($id);
+        Session::put('url.intended', url(URL::previous()));
+
+        return view('backend.images.edit', compact('image'));
+    }
+
+    public function update($id)
+    {
+        $image = Image::findOrFail($id);
+        $image->update($this->request->all());
+
+        return redirect()->intended('/' . config('app.admin_segment_name') . '/images');
     }
 
     public function destroy($id)

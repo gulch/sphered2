@@ -29,6 +29,8 @@ Route::group(['middleware' => ['admin']], function () {
 
         /* Изображения */
         Route::post('image/upload', 'Backend\ImagesController@upload');
+        Route::post('images/upload/getid', 'Backend\ImagesController@uploadAndCreate');
+        Route::resource('images', 'Backend\ImagesController');
     });
 
 });
