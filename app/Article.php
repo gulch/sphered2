@@ -27,4 +27,9 @@ class Article extends Model
         return $this->belongsTo('App\Image','id__Image');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag', 'Article_Tag', 'id__Article', 'id__Tag');
+    }
+
 }

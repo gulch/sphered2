@@ -22,10 +22,16 @@ Route::group(['middleware' => ['admin']], function () {
     /* Backend routes */
     Route::group(['prefix' => config('app.admin_segment_name'), 'middleware' => 'auth'], function () {
         Route::get('/', 'Backend\DashboardController@index');
-        /* Статьи в блоге */
+
+        /* Теги статей в блоге */
         Route::resource('tags', 'Backend\TagsController');
         Route::post('tags/{id}/publish', 'Backend\TagsController@publish');
         Route::post('tags/{id}/unpublish', 'Backend\TagsController@unpublish');
+
+        /* Статьи в блоге */
+        Route::resource('articles', 'Backend\ArticlesController');
+        Route::post('articles/{id}/publish', 'Backend\ArticlesController@publish');
+        Route::post('articles/{id}/unpublish', 'Backend\ArticlesController@unpublish');
 
         /* Изображения */
         Route::post('image/upload', 'Backend\ImagesController@upload');

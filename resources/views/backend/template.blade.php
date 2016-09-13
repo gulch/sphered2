@@ -20,6 +20,12 @@
             <i class="dashboard icon"></i>
             Админ панель
         </a>
+        <a href="/{{ config('app.admin_segment_name') }}/articles"
+           class="item @if(Request::segment(1) === 'articles') active @endif"
+        >
+            <i class="file text outline icon"></i>
+            Статьи в блоге
+        </a>
         <a href="/{{ config('app.admin_segment_name') }}/tags"
            class="item @if(Request::segment(1) === 'tags') active @endif"
         >

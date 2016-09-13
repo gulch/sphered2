@@ -23,8 +23,8 @@
     </div>
 
     <div class="ui clearing divider"></div>
-    @if (!is_null($tags))
 
+    @if (!is_null($tags))
         <div class="ui relaxed items">
             @foreach($tags as $tag)
                 <div class="item"
@@ -81,54 +81,6 @@
                 </div>
             @endforeach
         </div>
-
-        {{--@foreach($tags as $tag)
-            <div data-id="{{ $tag->id }}" class="ui segment {{ $tag->is_published ? 'raised' : 'secondary' }}">
-                <div class="ui comments">
-                    <div class="comment">
-                        <div class="ui statistic tiny right floated">
-                            <div class="value">
-                                <i class="university icon"></i>
-                                {{ $tag->articles->count() }}
-                            </div>
-                            <div class="label">Публикаций</div>
-                        </div>
-                        <div class="content">
-                            <div class="metadata">
-                                <div class="date" data-content="{{ $tag->created_at->format('d.m.Y H:i:s') }}" data-variation="small">
-                                    {{ $tag->created_at->diffForHumans() }}
-                                </div>
-                            </div>
-                            <div class="text title-text">
-                                <a target="_blank" href="{{ url($tag->slug) }}">
-                                    {{ $tag->title }}
-                                </a>
-                            </div>
-                            <div class="text">
-                                {!! str_limit(strip_tags($tag->content), 100) !!}
-                            </div>
-                            <div class="actions">
-                                <a href="/{{ config('app.admin_segment_name') }}/tags/{{ $tag->id }}/edit">
-                                    <i class="edit icon"></i>Редактировать
-                                </a>
-                                <a data-popup="1">
-                                    <i class="remove circle icon"></i>Удалить
-                                </a>
-                                <div class="ui custom popup">
-                                    <div class="ui huge header center aligned">Точно удалить?</div>
-                                    <span class="ui negative button"
-                                          data-action-name="remove"
-                                          data-action="/{{ config('app.admin_segment_name') }}/tags/{{ $tag->id }}"
-                                          data-method="DELETE">Да
-                                    </span>
-                                    <span class="ui button">Нет</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach--}}
     @else
         @include('backend._partials.nothingfound')
     @endif

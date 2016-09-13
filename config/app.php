@@ -220,6 +220,7 @@ return [
     ],
 
     'admin_segment_name' => env('ADMIN_SEGMENT_NAME', 'admin'),
+    'assets_img_path' => env('ASSETS_IMG_PATH', '/assets/img'),
     'image_upload_path' => env('IMAGE_UPLOAD_PATH', '/uploads/img'),
     'post_image_upload_path' => env('POST_IMAGE_UPLOAD_PATH', '/uploads/img/post'),
     'editor_image_upload_path' => env('EDITOR_IMAGE_UPLOAD_PATH', '/uploads/img/editor'),
