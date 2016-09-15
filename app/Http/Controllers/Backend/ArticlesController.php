@@ -20,7 +20,7 @@ class ArticlesController extends Controller
 
     public function create()
     {
-        return view('admin.articles.create', ['tags' => Tag::lists('title', 'id')]);
+        return view('backend.articles.create', ['tags' => Tag::lists('title', 'id')]);
     }
 
     public function edit($id)

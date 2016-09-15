@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('backend.template')
 
 @section('pagetitle')
     <h1 class="ui header">
@@ -9,9 +9,9 @@
 
 @section('content')
     <div class="ui warning form segment">
-        {!! Form::open(['url' => config('app.admin_segment_name') . '/articles']) !!}
+        {!! Form::open(['url' => '/' . config('app.admin_segment_name') . '/articles']) !!}
 
-        @include('admin.articles._form')
+        @include('backend.articles._form')
 
         {!! Form::close() !!}
     </div>

@@ -13,7 +13,7 @@ gulp.task('frontend-css', function () {
     return gulp.src([
         'public/assets/vendor/bootstrap/bootstrap.css',
         'public/assets/vendor/font-awesome/fa.css',
-        'public/assets/css/source/frontend.css'
+        'public/assets/css/frontend.css'
     ])
         .pipe(concat('f.css'))
         .pipe(postcss([
@@ -21,24 +21,24 @@ gulp.task('frontend-css', function () {
             autoprefixer({ browsers: ['last 4 versions'] })
         ]))
         .pipe(nano())
-        .pipe(gulp.dest('public/assets/css/build/'));
+        .pipe(gulp.dest('public/assets/b/'));
 });
 
 gulp.task('frontend-js', function () {
     return gulp.src([
         'public/assets/vendor/bootstrap/bootsrap.js',
         'public/assets/vendor/lazysizes/lazysizes.js',
-        'public/assets/js/source/frontend.js'
+        'public/assets/js/frontend.js'
     ])
         .pipe(concat('f.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('public/assets/js/build/'));
+        .pipe(gulp.dest('public/assets/b/'));
 });
 
 elixir(function(mix) {
     mix.version([
-        'assets/js/build/f.js',
-        'assets/css/build/f.css'
+        'assets/b/f.js',
+        'assets/b/f.css'
     ]);
 });
 

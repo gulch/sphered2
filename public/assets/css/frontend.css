@@ -193,7 +193,7 @@ img {
 }
 
 a {
-    color: #fff;
+    color: #08a7d8;
     text-decoration: none;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -599,15 +599,8 @@ p {
     overflow: hidden;
     width: 100%;
     height: 63px;
-    background: url('/assets/img/lw_mask.png') no-repeat \9;
-    background: none;
-    *background: none;
+    background: url('/assets/img/lw_mask.png') no-repeat;
     background-size: 100% 100%;
-
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
-            src='/assets/img/lw_mask.png',
-            sizingMethod='scale');
-
 }
 
 .main_wrapper .main_box .container,
@@ -631,8 +624,7 @@ p {
 }
 
 .main_wrapper .main_box .projects > ul > li {
-    overflow: hidden \9;
-    margin: 0;
+    overflow: hidden;
 }
 
 .projects > ul > li > figure,
