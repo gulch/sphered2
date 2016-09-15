@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Image;
 use App\Article;
 use Intervention\Image\ImageManagerStatic as InterventionImage;
-use Session;
-use URL;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Input;
 
 class ImagesController extends Controller
 {
@@ -80,6 +81,23 @@ class ImagesController extends Controller
         }
 
         return $this->jsonResponse($result);
+    }
+
+    public function getAllImagesList()
+    {
+        $result = [
+            'success' => 1
+        ];
+        $type = Input::get('type');
+        if ($type) {
+            $images = Image::where('type', $type)->latest()->get();
+        } else {
+            $images = Image::latest()->get();
+        }
+
+        $result['content'] = view('backend._partials.images_list', compact('images'))->render();
+
+        return json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 
     private function doUploadImage()

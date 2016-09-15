@@ -22,7 +22,7 @@
                                 <ul class="meta">
                                     <li class="item author left">
                                         <i class="icon sp dib"></i>
-                                        <div class="dib">Admin</div>
+                                        <div class="dib">Sphered</div>
                                     </li>
                                     <li class="item date right">
                                         <i class="icon sp dib"></i>

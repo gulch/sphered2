@@ -5,5 +5,5 @@
 @else
     <script defer src="/assets/vendor/bootstrap/bootstrap.js"></script>
     <script defer src="/assets/vendor/lazysizes/lazysizes.js"></script>
-    <script defer src="/assets/js/source/frontend.js"></script>
+    <script defer src="/assets/js/frontend.js"></script>
 @endif

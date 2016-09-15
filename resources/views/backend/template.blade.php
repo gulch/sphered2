@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="/assets/vendor/semantic/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/source/backend.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/backend.css">
 
     <script src="/assets/vendor/jquery/jquery.min.js"></script>
 </head>
@@ -49,7 +49,8 @@
     </div>
 
     <script defer src="/assets/vendor/semantic/semantic.min.js"></script>
-    <script defer src="/assets/js/source/general.js"></script>
-    <script defer src="/assets/js/source/backend.js"></script>
+    <script defer src="/assets/vendor/lazysizes/lazysizes.js"></script>
+    <script defer src="/assets/js/general.js"></script>
+    <script defer src="/assets/js/backend.js"></script>
 </body>
 </html>

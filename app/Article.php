@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $table = 'Article';
+    protected $fillable = [
+        'slug',
+        'title',
+        'content',
+        'id__Image',
+        'seo_title',
+        'seo_description',
+        'seo_keywords'
+    ];
 
     /* -------------- Scopes -------------- */
 
