@@ -38,8 +38,10 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/TestCase.php"
+        "exclude-from-classmap": [
+            "/Tests/",
+            "/test/",
+            "/tests/"
         ]
     },
     "scripts": {
