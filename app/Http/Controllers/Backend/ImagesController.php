@@ -41,7 +41,7 @@ class ImagesController extends Controller
         if (is_null($image)) {
             return $this->jsonResponse(['message' => 'Изображение не найдено']);
         } else {
-            $article = Article::where('image_id', $image->id)->first();
+            $article = Article::where('id__Image', $image->id)->first();
             if (!is_null($article)) {
                 return json_encode(['message' => 'Это изображение используется в статье блога "' . $article->title . '". Пока изображение привязано к какой либо статье блога, вы не сможете его удалить.']);
             }
