@@ -193,7 +193,7 @@ img {
 }
 
 a {
-    color: #08a7d8;
+    color: #fff;
     text-decoration: none;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -2909,6 +2909,6 @@ span.msg {
     line-height: 24px;
 }
 
-.btn.dib a {
-    color: white;
+.blog a {
+    color: #08a7d8;
 }
