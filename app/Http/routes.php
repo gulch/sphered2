@@ -7,8 +7,16 @@ Route::get('create/sitemap', 'SitemapController@generateSitemap');
 Route::get('feed', 'RssController@generate');
 Route::get('rss', 'RssController@generate');
 
-Route::group(['middleware' => ['admin']], function () {
+// Сообщения с форм
+Route::group(['prefix' => 'message'], function () {
+    Route::post('subscribe', 'Frontend\MessageController@subscribe');
+    Route::post('contact', 'Frontend\MessageController@contact');
+    Route::post('start', 'Frontend\MessageController@start');
+    Route::post('requestcode', 'Frontend\MessageController@requestcode');
+});
 
+// Backend
+Route::group(['middleware' => ['admin']], function () {
     Route::group(['middleware' => 'VerifyCsrfToken'], function () {
         /* Auth routes */
         Route::get('login', 'Auth\AuthController@showLoginForm');
@@ -42,16 +50,8 @@ Route::group(['middleware' => ['admin']], function () {
 
 });
 
-// Сообщения с форм
-Route::group(['prefix' => 'message'], function () {
-    Route::post('subscribe', 'Frontend\MessageController@subscribe');
-    Route::post('contact', 'Frontend\MessageController@contact');
-    Route::post('start', 'Frontend\MessageController@start');
-    Route::post('requestcode', 'Frontend\MessageController@requestcode');
-});
-
 // Frontend
-Route::group(['middleware' => 'MinifyHTML'], function () {
+Route::group(['middleware' => ['MinifyHTML', 'SuperFileCache']], function () {
 
     Route::get('blog', 'Frontend\BlogController@index');
     Route::get('blog/{slug}', 'Frontend\BlogController@show');

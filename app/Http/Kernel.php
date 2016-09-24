@@ -53,5 +53,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'MinifyHTML' => \App\Http\Middleware\MinifyMiddleware::class,
         'VerifyCsrfToken' => \App\Http\Middleware\VerifyCsrfToken::class,
+        'SuperFileCache' => \App\Http\Middleware\SuperFileCacheMiddleware::class,
     ];
 }
